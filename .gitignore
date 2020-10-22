@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+ckpts/*
+main.pytest__DUMMY_RUN_lambda_03_zhatdim50_bs1000_e20_ss10000_seed1000_.dict
