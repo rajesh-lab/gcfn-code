@@ -136,7 +136,7 @@ class VDE(pl.LightningModule):
                 raise ValueError('ONLY add AND mult HANDLED IN CODE')
         else:
             self.dec_fn = dec_fn
-        
+
         if self.recon_likelihood == 'cat':
             # NOTE CAT TAKES A LOT OF GPU MEMORY; TENSOR ARE EXPANDED TO ENSURE SPEED.
             self.dec_fn = 'general'
@@ -149,7 +149,7 @@ class VDE(pl.LightningModule):
                 The following setting works for a standard normal t.
                 When using a different distribution please choose these appropriately.
                 If chosen without care, one bin could be large and contain many treatment values all of which will be treated the same in VDE; this leads to GCFN estimating the same control function for all treatment values in this bin, for a fixed IV val.
-                For example, if r_min is 0 for a [-1,0] uniform R.V. all the treatment values will be in the bin [-infty, r_min]. 
+                For example, if r_min is 0 for a [-1,0] uniform R.V. all the treatment values will be in the bin [-infty, r_min].
             """
             print(' USING r_min r_max for standard normal;')
             self.r_min = -3.5
@@ -337,7 +337,7 @@ class VDE(pl.LightningModule):
             assert phi_eps.shape == phi_zhat.shape, (
                 phi_eps.shape, phi_zhat.shape)
 
-            return self.dec_fn(phi_zhat, phi_zhat)
+            return self.dec_fn(phi_eps, phi_zhat)
 
     def fix_z(self, z):
         return (z - self.z_vec.mean())/10
